@@ -1,0 +1,7 @@
+<header>
+  <t-table-row [row]="header" [isHeader]="true"></t-table-row>
+</header>
+
+<main>
+  <t-table-row *ngFor="let row of rows" [row]="row"></t-table-row>
+</main>
