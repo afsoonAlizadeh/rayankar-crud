@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+  <div class="column">
+    <div class="form-group">
+      <label for="firstName">First Name: </label>
+      <input
+        id="firstName"
+        formControlName="firstName"
+        type="text"
+        class="form-control"
+        name="firstName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name: </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        id="lastName"
+        required
+      />
+    </div>
+  </div>
+  <div class="column">
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number: </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="phoneNumber"
+        id="phoneNumber"
+        name="phoneNumber"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        id="email"
+        name="email"
+      />
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="form-group">
+      <label for="bankAccountNumber">Bank Account Number: </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="bankAccountNumber"
+        id="bankAccountNumber"
+        name="bankAccountNumber"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="!form.valid" class="submit">
+      Submit
+    </button>
+  </div>
+</form>
