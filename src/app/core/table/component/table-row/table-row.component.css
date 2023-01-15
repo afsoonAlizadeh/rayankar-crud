@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+:host:hover {
+  background: #e6e6e6;
+}
+
+:host[header="true"] {
+  font-weight: 600;
+  pointer-events: none;
+}
+
+tr,
+td {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+}
