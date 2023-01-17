@@ -1,2 +1,7 @@
 <button (click)="addCustomer()">add</button>
-<t-table [header]="header" [rows]="rows"></t-table>
+<t-table
+  [header]="header"
+  [rows]="rows"
+  [actions]="actionList"
+  (eventAction)="actions($event)"
+></t-table>

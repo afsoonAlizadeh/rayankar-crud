@@ -1,3 +1,5 @@
+import { Action, EventAction } from '../../../../type/action';
+import { DashboardService } from './../../../service/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../../type/customer';
 import { Table } from 'src/app/core/table/type/table';
@@ -20,15 +22,20 @@ export class ViewCustomerComponent implements OnInit {
     ],
   };
 
-  constructor(private router: Router) {}
+  actionList: Action[] = [
+    { name: 'edit', title: 'Edit' },
+    { name: 'delete', title: 'Delete' },
+  ];
 
-  ngOnInit(): void {}
+  constructor(private dashboard: DashboardService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.dashboard.getCustomerList();
+  }
 
   get rows() {
     const rows: Table[] = [];
-    const data = JSON.parse(localStorage.getItem('dataSource')!);
-
-    data.forEach((c: Customer) => {
+    this.dashboard.customerArray.forEach((c: Customer) => {
       rows.push({
         columns: [
           {
@@ -63,5 +70,23 @@ export class ViewCustomerComponent implements OnInit {
 
   addCustomer() {
     this.router.navigate(['/add']);
+  }
+
+  editCustomer(id: string) {
+    this.router.navigate(['/edit' + id]);
+  }
+
+  deleteCustomer(id: string) {}
+
+  actions(action: EventAction) {
+    switch (action.name) {
+      case 'edit':
+        debugger;
+        this.editCustomer(action.id);
+        break;
+      case 'delete':
+        this.deleteCustomer(action.id);
+        break;
+    }
   }
 }

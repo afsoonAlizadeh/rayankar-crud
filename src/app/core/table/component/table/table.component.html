@@ -3,5 +3,12 @@
 </header>
 
 <main>
-  <t-table-row *ngFor="let row of rows" [row]="row"></t-table-row>
+  <ng-container *ngIf="rows.length > 0">
+    <t-table-row *ngFor="let row of rows" [row]="row" [actions]="actions">
+    </t-table-row>
+  </ng-container>
+  <ng-container *ngIf="rows.length == 0">
+    <p>no customer</p>
+  </ng-container>
 </main>
+<footer></footer>

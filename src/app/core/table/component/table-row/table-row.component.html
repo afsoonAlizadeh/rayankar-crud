@@ -1,5 +1,6 @@
 <tr>
   <td *ngFor="let column of columns">
     {{ column.value }}
+    <ng-content></ng-content>
   </td>
 </tr>

@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
+import { DashboardService } from './../../../service/dashboard.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-customer',
@@ -8,18 +10,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddCustomerComponent implements OnInit {
   form!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private dashboard: DashboardService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dashboard.getCustomerList();
+    this.buildForm();
+  }
 
   buildForm() {
-    this.form = this.fb.group({
-      id: Math.floor(Math.random() * 100000000).toString(),
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      bankAccountNumber: ['', [Validators.required]],
+    this.form = new FormGroup({
+      id: new FormControl(Math.floor(Math.random() * 100000000).toString()),
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      dateOfBirth: new FormControl(),
+      phoneNumber: new FormControl(),
+      email: new FormControl(),
+      bankAccountNumber: new FormControl(),
     });
+  }
+
+  onSubmit() {
+    const customers = [...this.dashboard.customerArray, this.form.value];
+    this.dashboard.addCustomer(customers);
+    this.router.navigate(['/']);
   }
 }
