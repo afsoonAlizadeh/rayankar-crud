@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Table } from '../../type/table';
+import { Action } from 'src/app/type/action';
 
 @Component({
   selector: 't-table-row',
@@ -14,11 +22,18 @@ export class TableRowComponent implements OnInit {
   @HostBinding('attr.header')
   isHeader: boolean = false;
 
+  @Input() actions: Action[] = [];
+
+  @Output() actionClickButton = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit(): void {}
 
   get columns() {
     return this.row.columns;
+  }
+
+  onAction(action: string) {
+    this.actionClickButton.emit(action);
   }
 }
