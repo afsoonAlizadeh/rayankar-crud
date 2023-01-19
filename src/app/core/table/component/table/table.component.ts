@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EventAction } from './../../../../type/action';
 import { Action } from '../../../../type/action';
 import { Table } from './../../type/table';
+import { Customer } from 'src/app/dashboard/customer/type/customer';
 
 @Component({
   selector: 't-table',
@@ -13,13 +13,13 @@ export class TableComponent implements OnInit {
   @Input() rows: Table[] = [];
   @Input() actions: Action[] = [];
 
-  @Output() eventAction = new EventEmitter<EventAction>();
+  @Output() eventAction = new EventEmitter<Action>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  actionEvent(id: string, name: string) {
-    const eventAction = { id: id, name: name };
-    this.eventAction.emit(eventAction);
+  actionButton(actionButton: string, row: Table) {
+    const action: Action = { name: actionButton, data: row.columns };
+    this.eventAction.emit(action);
   }
 }

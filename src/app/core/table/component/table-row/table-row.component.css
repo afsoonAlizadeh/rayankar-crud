@@ -13,9 +13,9 @@
   pointer-events: none;
 }
 
-tr,
+tr.column,
 td {
   display: flex;
-  width: 100%;
+  width: 90%;
   padding: 8px;
 }

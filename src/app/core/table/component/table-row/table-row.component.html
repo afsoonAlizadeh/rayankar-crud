@@ -1,6 +1,10 @@
-<tr>
+<tr class="column">
   <td *ngFor="let column of columns">
     {{ column.value }}
-    <ng-content></ng-content>
+  </td>
+</tr>
+<tr class="d-flex">
+  <td *ngFor="let action of actions" (click)="onAction(action.name)">
+    {{ action.name }}
   </td>
 </tr>

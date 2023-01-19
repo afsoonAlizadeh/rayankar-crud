@@ -4,7 +4,12 @@
 
 <main>
   <ng-container *ngIf="rows.length > 0">
-    <t-table-row *ngFor="let row of rows" [row]="row" [actions]="actions">
+    <t-table-row
+      *ngFor="let row of rows"
+      [row]="row"
+      [actions]="actions"
+      (actionClickButton)="actionButton($event, row)"
+    >
     </t-table-row>
   </ng-container>
   <ng-container *ngIf="rows.length == 0">
