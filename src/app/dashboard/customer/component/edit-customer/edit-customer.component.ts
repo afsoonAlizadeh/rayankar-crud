@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-customer',
@@ -8,9 +9,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class EditCustomerComponent implements OnInit {
   form!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  firstName: any = [];
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.route.snapshot.paramMap.get('customer'));
+
+    this.firstName = this.route.snapshot.paramMap.get('customer');
+  }
 
   buildForm() {
     this.form = this.fb.group({
