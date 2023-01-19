@@ -1,4 +1,4 @@
-import { Action, EventAction } from '../../../../type/action';
+import { Action } from '../../../../type/action';
 import { DashboardService } from './../../../service/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../../type/customer';
@@ -72,20 +72,19 @@ export class ViewCustomerComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
-  editCustomer(id: string) {
-    this.router.navigate(['/edit' + id]);
+  editCustomer(customer: any) {
+    this.router.navigate(['/edit', { data: customer }]);
   }
 
   deleteCustomer(id: string) {}
 
-  actions(action: EventAction) {
+  actions(action: Action) {
     switch (action.name) {
       case 'edit':
-        debugger;
-        this.editCustomer(action.id);
+        this.editCustomer(action.data);
         break;
       case 'delete':
-        this.deleteCustomer(action.id);
+        this.deleteCustomer(action.data);
         break;
     }
   }
