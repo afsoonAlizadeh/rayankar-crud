@@ -12,6 +12,7 @@ export class TableComponent implements OnInit {
   @Input() header: Table = { columns: [] };
   @Input() rows: Table[] = [];
   @Input() actions: Action[] = [];
+  row: any;
 
   @Output() eventAction = new EventEmitter<Action>();
   constructor() {}
@@ -19,7 +20,12 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {}
 
   actionButton(actionButton: string, row: Table) {
-    const action: Action = { name: actionButton, data: row.columns };
+    row.columns.map((user: any) => {
+      this.row = { ...this.row, [user.label]: user.value };
+    });
+
+    const action: Action = { name: actionButton, data: this.row };
+
     this.eventAction.emit(action);
   }
 }
