@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   @Input() header: Table = { columns: [] };
   @Input() rows: Table[] = [];
   @Input() actions: Action[] = [];
-  row: any;
+  row = {};
 
   @Output() eventAction = new EventEmitter<Action>();
   constructor() {}
