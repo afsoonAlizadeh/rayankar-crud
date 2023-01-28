@@ -72,8 +72,8 @@ export class ViewCustomerComponent implements OnInit {
     this.router.navigate(['/add']);
   }
 
-  editCustomer(customer: any) {
-    this.router.navigate(['/edit', { data: customer }]);
+  editCustomer(email: string) {
+    this.router.navigate(['/edit/' + email]);
   }
 
   deleteCustomer(id: string) {}
@@ -81,7 +81,7 @@ export class ViewCustomerComponent implements OnInit {
   actions(action: Action) {
     switch (action.name) {
       case 'edit':
-        this.editCustomer(action.data);
+        this.editCustomer(action.data.Email);
         break;
       case 'delete':
         this.deleteCustomer(action.data);
