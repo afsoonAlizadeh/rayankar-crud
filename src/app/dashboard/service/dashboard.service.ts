@@ -17,6 +17,8 @@ export class DashboardService {
     this.customer$.next(JSON.parse(localStorage.getItem('dataSource')!));
   }
 
+  getCustomerById() {}
+
   addCustomer(customer: Customer[] | Customer) {
     localStorage.setItem('dataSource', JSON.stringify(customer));
   }
